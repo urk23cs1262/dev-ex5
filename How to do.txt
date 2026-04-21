@@ -20,7 +20,13 @@ docker run -d --name jenkins -p 8080:8080 -p 50000:50000 -v jenkins-data:/var/je
 
 docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
 
-Then Open: http://localhost:8080
+
+
+if not
+
+docker start jenkins
+
+docker ps
 
 docker exec -u root jenkins bash -c "apt-get update && apt-get install -y docker.io"
 
@@ -28,7 +34,7 @@ docker exec -u root jenkins chmod 666 /var/run/docker.sock
 
 docker restart jenkins
 
-http://localhost:5000
+Then Open: http://localhost:8080
 
 
 
