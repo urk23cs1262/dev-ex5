@@ -1,0 +1,79 @@
+create new repo for this ex
+
+git add .
+
+git commit -m "jenkins"
+
+git remote add origin (repo link)
+
+git push origin main
+
+or 
+
+git pull origin main --allow-unrelated-histories
+
+git pull origin main
+
+docker volume create jenkins-data
+
+docker run -d --name jenkins -p 8080:8080 -p 50000:50000 -v jenkins-data:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock jenkins/jenkins:lts
+
+docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
+
+Then Open: http://localhost:8080
+
+docker exec -u root jenkins bash -c "apt-get update && apt-get install -y docker.io"
+
+docker exec -u root jenkins chmod 666 /var/run/docker.sock
+
+docker restart jenkins
+
+http://localhost:5000
+
+
+
+To add credentials
+
+open jenkins
+
+Manage Jenkins
+
+Credentials
+
+(System) → Global credentials (unrestricted)
+
+Add Credentials
+
+fill the details
+
+Username - urk23cs1262
+
+Password - Docker Hub Access Token
+
+ID - dockerhub-creds
+
+Description - Docker Hub login
+
+click Create
+
+
+
+Click New Item
+
+Enter name (example: docker-pipeline)
+
+Select Pipeline
+
+Click OK
+
+In Pipeline section:
+
+Choose: Pipeline script (easy method)
+
+Paste your code (the one you prepared)
+
+Click Save
+
+click Build Now
+
+open http://localhost:5000
